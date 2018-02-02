@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.view.View;
 import java.util.List;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -47,10 +48,16 @@ public class MainActivity extends AppCompatActivity
 			
 			IRetrofit iRetrofit = retrofit.create(IRetrofit.class);
 			
+			mBinder.shimmerFrameLayout.startShimmerAnimation();
+			mBinder.recyclerView.setVisibility(View.GONE);
+			
 			iRetrofit.getUsers(2).enqueue(new Callback<GetUserResponse>() {
 				@Override public void onResponse(Call<GetUserResponse> call,
 						Response<GetUserResponse> response) {
 					try {
+						mBinder.shimmerFrameLayout.stopShimmerAnimation();
+						mBinder.shimmerFrameLayout.setVisibility(View.GONE);
+						mBinder.recyclerView.setVisibility(View.VISIBLE);
 						if (response.isSuccessful()) {
 							populateData(response.body().getData());
 						}
@@ -61,6 +68,9 @@ public class MainActivity extends AppCompatActivity
 				
 				@Override public void onFailure(Call<GetUserResponse> call, Throwable t) {
 					try {
+						mBinder.shimmerFrameLayout.stopShimmerAnimation();
+						mBinder.shimmerFrameLayout.setVisibility(View.GONE);
+						mBinder.recyclerView.setVisibility(View.VISIBLE);
 						Log.d("OnFailure", t.toString());
 					} catch (Exception e) {
 						e.printStackTrace();
