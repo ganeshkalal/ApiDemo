@@ -1,2 +1,2 @@
 # ApiDemo
-This is a basic demo project to demonstrate the use of Retrofit, Recyclerview &amp; Data Binding
+This is a basic demo project to demonstrate the use of Retrofit, Recyclerview, Glide & Data Binding
