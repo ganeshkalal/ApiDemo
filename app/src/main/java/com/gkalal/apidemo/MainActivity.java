@@ -16,7 +16,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.gkalal.apidemo.IRetrofit.BASE_URL;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+		implements RecyclerViewAdapter.HandleClickListener {
 	
 	private MainActivityBinder mBinder;
 	private RecyclerViewAdapter mAdapter;
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 	private void populateData(List<GetUserResponse.Data> dataList) {
 		try {
 			if (dataList != null) {
-				mAdapter = new RecyclerViewAdapter(dataList, MainActivity.this);
+				mAdapter = new RecyclerViewAdapter(dataList, MainActivity.this, this);
 				mAdapter.setHasStableIds(true);
 				mBinder.recyclerView.setAdapter(mAdapter);
 				mBinder.recyclerView.setHasFixedSize(true);
@@ -84,5 +85,9 @@ public class MainActivity extends AppCompatActivity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override public void onItemClick(GetUserResponse.Data data) {
+	
 	}
 }

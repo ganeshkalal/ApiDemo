@@ -14,10 +14,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 	private ItemRecyclerViewBinder mBinder;
 	private List<GetUserResponse.Data> userList;
 	private Context context;
+	private HandleClickListener handleClickListener;
 	
-	public RecyclerViewAdapter(List<GetUserResponse.Data> userList, Context context) {
+	public RecyclerViewAdapter(List<GetUserResponse.Data> userList, Context context,
+			HandleClickListener handleClickListener) {
 		this.userList = userList;
 		this.context = context;
+		this.handleClickListener = handleClickListener;
 	}
 	
 	@Override
@@ -36,6 +39,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 				mBinder.textViewLastName.setText("Last Name : " + data.getLastName());
 				
 				Glide.with(context).load(data.getAvatar()).into(mBinder.imageViewProfile);
+				
+				handleClickListener.onItemClick(data);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,6 +53,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 	
 	@Override public long getItemId(int position) {
 		return position;
+	}
+	
+	interface HandleClickListener {
+		void onItemClick(GetUserResponse.Data data);
 	}
 	
 	class ViewHolder extends RecyclerView.ViewHolder {
