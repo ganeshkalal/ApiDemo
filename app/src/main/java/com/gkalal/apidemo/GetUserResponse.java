@@ -9,7 +9,7 @@ class GetUserResponse {
 	@SerializedName("per_page") @Expose private int perPage;
 	@SerializedName("total") @Expose private int total;
 	@SerializedName("total_pages") @Expose private int totalPages;
-	@SerializedName("data") @Expose private List<Data> data = null;
+	@SerializedName("data") @Expose private List<UserData> data = null;
 	
 	public int getPage() {
 		return page;
@@ -43,51 +43,11 @@ class GetUserResponse {
 		this.totalPages = totalPages;
 	}
 	
-	public List<Data> getData() {
+	public List<UserData> getData() {
 		return data;
 	}
 	
-	public void setData(List<Data> data) {
+	public void setData(List<UserData> data) {
 		this.data = data;
-	}
-	
-	public class Data {
-		
-		@SerializedName("id") @Expose private int id;
-		@SerializedName("first_name") @Expose private String firstName;
-		@SerializedName("last_name") @Expose private String lastName;
-		@SerializedName("avatar") @Expose private String avatar;
-		
-		public int getId() {
-			return id;
-		}
-		
-		public void setId(int id) {
-			this.id = id;
-		}
-		
-		public String getFirstName() {
-			return firstName;
-		}
-		
-		public void setFirstName(String firstName) {
-			this.firstName = firstName;
-		}
-		
-		public String getLastName() {
-			return lastName;
-		}
-		
-		public void setLastName(String lastName) {
-			this.lastName = lastName;
-		}
-		
-		public String getAvatar() {
-			return avatar;
-		}
-		
-		public void setAvatar(String avatar) {
-			this.avatar = avatar;
-		}
 	}
 }

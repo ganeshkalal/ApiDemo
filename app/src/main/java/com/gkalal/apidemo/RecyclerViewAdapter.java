@@ -12,11 +12,11 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 	
 	private ItemRecyclerViewBinder mBinder;
-	private List<GetUserResponse.Data> userList;
+	private List<UserData> userList;
 	private Context context;
 	private HandleClickListener handleClickListener;
 	
-	public RecyclerViewAdapter(List<GetUserResponse.Data> userList, Context context,
+	public RecyclerViewAdapter(List<UserData> userList, Context context,
 			HandleClickListener handleClickListener) {
 		this.userList = userList;
 		this.context = context;
@@ -33,7 +33,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 	@SuppressLint("SetTextI18n") @Override
 	public void onBindViewHolder(RecyclerViewAdapter.ViewHolder holder, int position) {
 		try {
-			GetUserResponse.Data data = userList.get(position);
+			UserData data = userList.get(position);
 			if (data != null) {
 				mBinder.textViewFirstName.setText("First Name : " + data.getFirstName());
 				mBinder.textViewLastName.setText("Last Name : " + data.getLastName());
@@ -56,7 +56,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 	}
 	
 	interface HandleClickListener {
-		void onItemClick(GetUserResponse.Data data);
+		void onItemClick(UserData data);
 	}
 	
 	class ViewHolder extends RecyclerView.ViewHolder {

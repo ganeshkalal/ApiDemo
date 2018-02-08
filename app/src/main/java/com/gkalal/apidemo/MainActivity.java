@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity
 		}
 	}
 	
-	private void populateData(List<GetUserResponse.Data> dataList) {
+	private void populateData(List<UserData> dataList) {
 		try {
 			if (dataList != null) {
 				mAdapter = new RecyclerViewAdapter(dataList, MainActivity.this, this);
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity
 		}
 	}
 	
-	@Override public void onItemClick(GetUserResponse.Data data) {
+	@Override public void onItemClick(UserData data) {
 	
 	}
 }
